@@ -1,9 +1,11 @@
 goibus - golang implementation of libibus
 ==
 
-goibus implements the libibus bindings in golang. goibus can be used to create ibus engines aka develop custom input methods.
+goibus implements the libibus bindings in golang. goibus can be used to create IBus engines aka develop custom input methods.
 
-This library is little bit different than other libibus bindins/wrappers. Instead of wrapping `libibus c library` or `GOBject-Introspection`, it implements whole functionality by communicating over DBus IPC. Because of that it is a independent 100% pure golang library without any native dependencies.
+IBus is an Intelligent Input Bus. It provides full featured and user friendly input method user interface. It also may help developers to develop input method easily.
+
+This library is little bit different than other libibus bindings/wrappers. Instead of wrapping `libibus c library` or `GOBject-Introspection`, it implements whole functionality by communicating over DBus IPC. Because of that it is a independent 100% pure golang library without any native dependencies.
 
 ####NB:
 libibus has various classes that are not absolutely required for creating engines. This library only implements engine related classes. Some uncommon class/methods are also skipped for now. You can always implement those and send PR ;)
@@ -11,7 +13,7 @@ libibus has various classes that are not absolutely required for creating engine
 This table shows the current status of implementation.
 
 libibus|-|goibus
---|--
+--|-|--
 [IBusAttrList](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusAttrList.html) | :white_check_mark: | Implemented In `text.go`
 [IBusAttribute](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusAttribute.html) | :large_blue_circle: | Ignored for now, will implement
 [IBusBus](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusBus.html) | :white_check_mark: | Implemented In `bus.go`
