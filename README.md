@@ -12,8 +12,8 @@ libibus has various classes that are not absolutely required for creating engine
 
 This table shows the current status of implementation.
 
-libibus|-|goibus
---|-|--
+libibus | - | goibus
+--- | --- | ---
 [IBusAttrList](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusAttrList.html) | :white_check_mark: | Implemented In `text.go`
 [IBusAttribute](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusAttribute.html) | :large_blue_circle: | Ignored for now, will implement
 [IBusBus](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusBus.html) | :white_check_mark: | Implemented In `bus.go`
@@ -37,6 +37,7 @@ libibus|-|goibus
 [IBusSerializable](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusSerializable.html) | :white_check_mark: | Not needed in golang, All implemented classes are Serializable
 [IBusService](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusService.html) | :white_check_mark: | Ignored, not needed. Parent/Interface class
 [IBusText](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusText.html) | :white_check_mark: | Implemented In `text.go`
+
 
 Installation
 ==
