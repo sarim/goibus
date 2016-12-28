@@ -20,7 +20,7 @@ func NewBus() *Bus {
 	conn, err := dbus.Dial(addr)
 	doPanic(err)
 
-	err = conn.Auth(nil)
+	err = conn.Auth(GetUserAuth())
 	doPanic(err)
 
 	err = conn.Hello()

@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strconv"
 	"strings"
+
+	"github.com/godbus/dbus"
 )
 
 const (
@@ -98,4 +101,16 @@ func GetUserConfigDir() string {
 		return os.Getenv("HOME") + "/.config"
 	}
 	return dir
+}
+
+func GetUserAuth() []dbus.Auth {
+	uid := os.Getenv("DBUS_AUTH_UID")
+	if uid == "" {
+		uid = strconv.Itoa(os.Getuid())
+	}
+	home := os.Getenv("DBUS_AUTH_HOME")
+	if home == "" {
+		home = os.Getenv("HOME")
+	}
+	return []dbus.Auth{dbus.AuthExternal(uid), dbus.AuthCookieSha1(uid, home)}
 }
