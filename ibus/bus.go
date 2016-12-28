@@ -6,8 +6,8 @@ import (
 
 type Bus struct {
 	dbusConn   *dbus.Conn
-	dbusObject *dbus.Object
-	ibusObject *dbus.Object
+	dbusObject dbus.BusObject
+	ibusObject dbus.BusObject
 }
 
 func NewBus() *Bus {
