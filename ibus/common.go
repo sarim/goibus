@@ -46,21 +46,21 @@ const (
 )
 
 func GetAddress() string {
-    address := os.Getenv("IBUS_ADDRESS")
-    if address != "" {
-        return address
-    }
-    data, err := ioutil.ReadFile(GetSocketPath())
-    if err != nil {
-        panic(err)
-    }
+	address := os.Getenv("IBUS_ADDRESS")
+	if address != "" {
+		return address
+	}
+	data, err := ioutil.ReadFile(GetSocketPath())
+	if err != nil {
+		panic(err)
+	}
 
-    for _, line := range strings.Split(string(data),"\n") {
-        if strings.Index(line, "IBUS_ADDRESS=") == 0 {
-            address = line[13:]
-        }
-    }
-    return address
+	for _, line := range strings.Split(string(data), "\n") {
+		if strings.Index(line, "IBUS_ADDRESS=") == 0 {
+			address = line[13:]
+		}
+	}
+	return address
 }
 
 func GetSocketPath() string {
