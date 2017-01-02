@@ -88,9 +88,14 @@ func GetSocketPath() string {
 }
 
 func GetLocalMachineId() string {
-	mID, err := ioutil.ReadFile("/var/lib/dbus/machine-id")
+	var mID []byte
+	var err error
+	mID, err = ioutil.ReadFile("/var/lib/dbus/machine-id")
 	if err != nil {
-		panic(err)
+		mID, err = ioutil.ReadFile("/etc/machine-id")
+		if err != nil {
+			panic(err)
+		}
 	}
 	return strings.TrimSpace(string(mID))
 }
