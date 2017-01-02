@@ -14,29 +14,29 @@ This table shows the current status of implementation.
 
 libibus | - | goibus
 --- | --- | ---
-[IBusAttrList](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusAttrList.html) | :white_check_mark: | Implemented In `text.go`
-[IBusAttribute](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusAttribute.html) | :large_blue_circle: | Ignored for now, will implement
-[IBusBus](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusBus.html) | :white_check_mark: | Implemented In `bus.go`
-[IBusComponent](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusComponent.html) | :white_check_mark: | Implemented In `component.go`
-[IBusConfig](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusConfig.html) | :red_circle: | Ignored, not implemented
-[IBusConfigService](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusConfigService.html) | :red_circle: | Ignored, not implemented
-[IBusEngine](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusEngine.html) | :white_check_mark: | Implemented In `engine.go`
-[IBusEngineDesc](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusEngineDesc.html) | :white_check_mark: | Implemented In `engineDesc.go`
-[IBusFactory](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusFactory.html) | :white_check_mark: | Implemented In `factory.go`
-[IBusHotkeyProfile](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusHotkeyProfile.html) | :red_circle: | Ignored, not implemented
-[IBusInputContext](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusInputContext.html) | :large_blue_circle: | Ignored, relevant inherited signals implemented in `Engine`
-[IBusKeymap](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusKeymap.html) | :large_blue_circle: | Ignored for now, will implement
-[IBusLookupTable](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusLookupTable.html) | :white_check_mark: | Implemented In `lookupTable.go`
-[IBusObject](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusObject.html) | :white_check_mark: | Ignored, Parent/Interface class, relevant inherited signals implemented in `Engine`
-[IBusObservedPath](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusObservedPath.html) | :red_circle: | Ignored, not implemented
-[IBusPanelService](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusPanelService.html) | :red_circle: | Ignored, not implemented
-[IBusPropList](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusPropList.html) | :white_check_mark: | Implemented In `property.go`
-[IBusProperty](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusProperty.html) | :white_check_mark: | Implemented In `property.go`
-[IBusProxy](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusProxy.html) | :red_circle: | Ignored, not implemented
-[IBusRegistry](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusRegistry.html) | :red_circle: | Ignored, not implemented
-[IBusSerializable](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusSerializable.html) | :white_check_mark: | Not needed in golang, All implemented classes are Serializable
-[IBusService](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusService.html) | :white_check_mark: | Ignored, not needed. Parent/Interface class
-[IBusText](https://ibus.googlecode.com/svn/docs/ibus-1.5//IBusText.html) | :white_check_mark: | Implemented In `text.go`
+[IBusAttrList](http://ibus.github.io/docs/ibus-1.5/IBusAttrList.html) | :white_check_mark: | Implemented In `text.go`
+[IBusAttribute](http://ibus.github.io/docs/ibus-1.5/IBusAttribute.html) | :large_blue_circle: | Ignored for now, will implement
+[IBusBus](http://ibus.github.io/docs/ibus-1.5/IBusBus.html) | :white_check_mark: | Implemented In `bus.go`
+[IBusComponent](http://ibus.github.io/docs/ibus-1.5/IBusComponent.html) | :white_check_mark: | Implemented In `component.go`
+[IBusConfig](http://ibus.github.io/docs/ibus-1.5/IBusConfig.html) | :red_circle: | Ignored, not implemented
+[IBusConfigService](http://ibus.github.io/docs/ibus-1.5/IBusConfigService.html) | :red_circle: | Ignored, not implemented
+[IBusEngine](http://ibus.github.io/docs/ibus-1.5/IBusEngine.html) | :white_check_mark: | Implemented In `engine.go`
+[IBusEngineDesc](http://ibus.github.io/docs/ibus-1.5/IBusEngineDesc.html) | :white_check_mark: | Implemented In `engineDesc.go`
+[IBusFactory](http://ibus.github.io/docs/ibus-1.5/IBusFactory.html) | :white_check_mark: | Implemented In `factory.go`
+[IBusHotkeyProfile](http://ibus.github.io/docs/ibus-1.5/IBusHotkeyProfile.html) | :red_circle: | Ignored, not implemented
+[IBusInputContext](http://ibus.github.io/docs/ibus-1.5/IBusInputContext.html) | :large_blue_circle: | Ignored, relevant inherited signals implemented in `Engine`
+[IBusKeymap](http://ibus.github.io/docs/ibus-1.5/IBusKeymap.html) | :large_blue_circle: | Ignored for now, will implement
+[IBusLookupTable](http://ibus.github.io/docs/ibus-1.5/IBusLookupTable.html) | :white_check_mark: | Implemented In `lookupTable.go`
+[IBusObject](http://ibus.github.io/docs/ibus-1.5/IBusObject.html) | :white_check_mark: | Ignored, Parent/Interface class, relevant inherited signals implemented in `Engine`
+[IBusObservedPath](http://ibus.github.io/docs/ibus-1.5/IBusObservedPath.html) | :red_circle: | Ignored, not implemented
+[IBusPanelService](http://ibus.github.io/docs/ibus-1.5/IBusPanelService.html) | :red_circle: | Ignored, not implemented
+[IBusPropList](http://ibus.github.io/docs/ibus-1.5/IBusPropList.html) | :white_check_mark: | Implemented In `property.go`
+[IBusProperty](http://ibus.github.io/docs/ibus-1.5/IBusProperty.html) | :white_check_mark: | Implemented In `property.go`
+[IBusProxy](http://ibus.github.io/docs/ibus-1.5/IBusProxy.html) | :red_circle: | Ignored, not implemented
+[IBusRegistry](http://ibus.github.io/docs/ibus-1.5/IBusRegistry.html) | :red_circle: | Ignored, not implemented
+[IBusSerializable](http://ibus.github.io/docs/ibus-1.5/IBusSerializable.html) | :white_check_mark: | Not needed in golang, All implemented classes are Serializable
+[IBusService](http://ibus.github.io/docs/ibus-1.5/IBusService.html) | :white_check_mark: | Ignored, not needed. Parent/Interface class
+[IBusText](http://ibus.github.io/docs/ibus-1.5/IBusText.html) | :white_check_mark: | Implemented In `text.go`
 
 
 Installation
