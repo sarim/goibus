@@ -15,7 +15,7 @@ This table shows the current status of implementation.
 libibus | - | goibus
 --- | --- | ---
 [IBusAttrList](http://ibus.github.io/docs/ibus-1.5/IBusAttrList.html) | :white_check_mark: | Implemented In `text.go`
-[IBusAttribute](http://ibus.github.io/docs/ibus-1.5/IBusAttribute.html) | :large_blue_circle: | Ignored for now, will implement
+[IBusAttribute](http://ibus.github.io/docs/ibus-1.5/IBusAttribute.html) | :white_check_mark: | Implemented In `text.go`
 [IBusBus](http://ibus.github.io/docs/ibus-1.5/IBusBus.html) | :white_check_mark: | Implemented In `bus.go`
 [IBusComponent](http://ibus.github.io/docs/ibus-1.5/IBusComponent.html) | :white_check_mark: | Implemented In `component.go`
 [IBusConfig](http://ibus.github.io/docs/ibus-1.5/IBusConfig.html) | :red_circle: | Ignored, not implemented
