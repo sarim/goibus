@@ -1,11 +1,14 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
-	"github.com/godbus/dbus"
-	"github.com/sarim/goibus/ibus"
+	"log"
 	"os"
+	"time"
+
+	ibus "github.com/BambooEngine/goibus"
 )
 
 var embeded = flag.Bool("ibus", false, "Run the embeded ibus component")
@@ -68,15 +71,32 @@ func main() {
 			f.Close()
 		}
 	} else if *embeded {
-		bus := ibus.NewBus()
+		// ibus-daemon spawns us, possibly before it has written its own address
+		// file, so wait for it instead of dying and being respawned forever.
+		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		defer cancel()
+
+		bus, err := ibus.DialWhenAvailable(ctx, ibus.DefaultRetryInterval)
+		if err != nil {
+			log.Fatalf("cannot start: %v", err)
+		}
+		defer bus.Close()
 		fmt.Println("Got Bus, Running Embeded")
 
 		conn := bus.GetDbusConn()
 		ibus.NewFactory(conn, GittuEngineCreator)
-		bus.RequestName("org.freedesktop.IBus.Gittu", 0)
-		select {}
+		if err := bus.RequestNameChecked("org.freedesktop.IBus.Gittu", 0); err != nil {
+			log.Fatalf("cannot register: %v", err)
+		}
+
+		// Exit when ibus-daemon goes away; it will start us again.
+		<-bus.Done()
 	} else if *standalone {
-		bus := ibus.NewBus()
+		bus, err := ibus.NewBusE()
+		if err != nil {
+			log.Fatalf("cannot start: %v", err)
+		}
+		defer bus.Close()
 		fmt.Println("Got Bus, Running Standalone")
 
 		conn := bus.GetDbusConn()
@@ -84,15 +104,11 @@ func main() {
 		bus.RegisterComponent(makeComponent())
 
 		fmt.Println("Setting Global Engine to me")
-		bus.CallMethod("SetGlobalEngine", 0, "gittu-sample")
-
-		c := make(chan *dbus.Signal, 10)
-		conn.Signal(c)
-
-		select {
-		case <-c:
+		if call := bus.CallMethod("SetGlobalEngine", 0, "gittu-sample"); call.Err != nil {
+			log.Fatalf("cannot activate: %v", call.Err)
 		}
 
+		<-bus.Done()
 	} else {
 		Usage()
 		os.Exit(1)

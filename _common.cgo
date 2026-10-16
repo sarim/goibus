@@ -1,4 +1,4 @@
-package ibus
+package goibus
 
 /*
 #cgo pkg-config: ibus-1.0

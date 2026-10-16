@@ -44,11 +44,69 @@ Installation
 
 ```
 go get github.com/godbus/dbus
-go get github.com/sarim/goibus
+go get github.com/BambooEngine/goibus
 ```
 
 check `_example` directory for a sample engine and ~~ TODO:detailed tutorial ~~. Run the sample engine by `_example -standalone` to see it in action.
 ![sample engine](https://cloud.githubusercontent.com/assets/1235888/7563038/569ef518-f7fb-11e4-91af-2c2150199fe7.png)
+
+Connecting to ibus-daemon
+==
+
+`IBusBus` is created with `NewBusE`, which reports failures instead of taking
+the process down:
+
+```go
+bus, err := goibus.NewBusE()
+if err != nil {
+        log.Fatalf("cannot start: %v", err)
+}
+defer bus.Close()
+```
+
+`NewBus` is the older constructor. It still panics on failure, which is usually
+not what you want in a component that `ibus-daemon` supervises, because the
+component is respawned and crashes again in a loop.
+
+A component that `ibus-daemon` spawns can start before the daemon has written
+its address file, and a component started by hand can inherit a stale address
+from a previous session. `DialWhenAvailable` retries until the daemon answers,
+and re-resolves the address on every attempt so a restarted daemon is picked up:
+
+```go
+ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+defer cancel()
+
+bus, err := goibus.DialWhenAvailable(ctx, goibus.DefaultRetryInterval)
+if err != nil {
+        log.Fatalf("ibus-daemon never became available: %v", err)
+}
+```
+
+Address resolution mirrors `ibus_get_address()`. `IBUS_ADDRESS` wins, otherwise
+the address is read from the file named by `IBUS_ADDRESS_FILE` or
+`$XDG_CONFIG_HOME/ibus/bus/<machine-id>-<hostname>-<display>`. Unlike the older
+`GetAddress`, `GetAddressE` parses the `IBUS_DAEMON_PID` line and checks that
+the recorded process is still alive, so a socket left behind by a crashed or
+restarted `ibus-daemon` is reported as `ErrDaemonNotRunning` instead of failing
+later with "connection refused".
+
+Components should also watch for the daemon going away, otherwise they block
+forever on a dead connection:
+
+```go
+// Exit when ibus-daemon restarts; it will respawn us.
+<-bus.Done()
+```
+
+To be notified when a new daemon appears, watch the address file the way libibus
+does with `g_file_monitor_file()`:
+
+```go
+go goibus.WatchAddress(ctx, goibus.GetSocketPath(), time.Second, func() {
+        log.Println("the ibus daemon address changed")
+})
+```
 
 License
 ==
